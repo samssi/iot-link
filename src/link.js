@@ -1,16 +1,29 @@
 const logger = require("bunyan").createLogger({name: "iot-link-link"});
 const iotService = require("./services/iot-service");
+const R = require("ramda");
 
-const configJson = {
-    deviceFunction: "colorLed",
-    intervalInSeconds: 3
-}
+const configJson = [
+    {
+        deviceFunction: ["temperatureSensorDAThermistor"] ,
+        intervalInMilliSeconds: 1000
+    },
+    {
+        deviceFunction: ["colorLed"] ,
+        intervalInMilliSeconds: 5000
+    }
+]
+    
 
 const execute = () => {
-    const callFunction = configJson.deviceFunction;
-    iotService[callFunction]();
+    R.forEach(run, configJson)
 }
 
-const intervalInMillisecons = (seconds) => seconds * 1000;
+const run = (config) => {
+    setInterval(() => R.forEach(call, config.deviceFunction), config.intervalInMilliSeconds);
+}
 
-setInterval(execute, intervalInMillisecons(configJson.intervalInSeconds));
+const call = (functionReference) => {
+    iotService[functionReference]();
+}
+
+execute();
