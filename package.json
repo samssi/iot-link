@@ -1,0 +1,15 @@
+{
+  "name": "iot-link",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "samssi",
+  "license": "ISC",
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "forever-monitor": "^1.7.1"
+  }
+}
