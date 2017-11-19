@@ -1,0 +1,10 @@
+[
+    {
+        "deviceFunction": ["temperatureSensorDAThermistor"] ,
+        "intervalInMilliSeconds": 1000
+    },
+    {
+        "deviceFunction": ["colorLed"] ,
+        "intervalInMilliSeconds": 5000
+    }
+]

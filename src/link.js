@@ -1,21 +1,14 @@
 const logger = require("bunyan").createLogger({name: "iot-link-link"});
 const iotService = require("./services/iot-service");
+const fs = require("fs");
+const path = require("path");
 const R = require("ramda");
 
-const configJson = [
-    {
-        deviceFunction: ["temperatureSensorDAThermistor"] ,
-        intervalInMilliSeconds: 1000
-    },
-    {
-        deviceFunction: ["colorLed"] ,
-        intervalInMilliSeconds: 5000
-    }
-]
-    
+const configJson = () => readFileFromRelativePath("config/service-config.json");
 
-const execute = () => {
-    R.forEach(run, configJson)
+const start = () => {
+    logger.info("iot-link started");
+    R.forEach(run, JSON.parse(configJson()));
 }
 
 const run = (config) => {
@@ -26,4 +19,14 @@ const call = (functionReference) => {
     iotService[functionReference]();
 }
 
-execute();
+const readFileFromRelativePath = (file) => {
+    const relativePath = path.relative(process.cwd(), file);
+    return fs.readFileSync(relativePath);
+}
+
+process.on("SIGINT", () => {
+    logger.info("iot-link shut down");
+    process.exit();
+});
+
+start();

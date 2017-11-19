@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/link.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "samssi",
   "license": "ISC",
   "dependencies": {
     "bunyan": "^1.8.12",
-    "forever-monitor": "^1.7.1",
+    "path": "^0.12.7",
     "ramda": "^0.25.0"
   }
 }
