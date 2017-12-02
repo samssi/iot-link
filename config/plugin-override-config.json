@@ -1,0 +1,4 @@
+[
+    { "plugin": "color-led", "intervalInMilliSeconds": 500 },
+    { "plugin": "temperature-reader", "intervalInMilliSeconds": 2000 }
+]

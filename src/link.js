@@ -1,6 +1,6 @@
 const logger = require("bunyan").createLogger({name: "iot-link-link"});
 const R = require("ramda");
-const serviceConfig = require("./service-config");
+const pluginOverrides = require("./plugin-overrides");
 const requireDir = require("require-dir");
 const plugins = requireDir("./plugins")
 
@@ -9,8 +9,12 @@ const start = () => {
     R.forEachObjIndexed(run, plugins);
 }
 
-const run = (plugin) => {
-    setInterval(() => plugin.execute(), plugin.interval()); 
+const run = (plugin, pluginName) => {
+    setInterval(() => plugin.execute(), pluginInterval(plugin, pluginName)); 
+}
+
+const pluginInterval = (plugin, pluginName) => {
+    return pluginOverrides.overrideOrNotInterval(plugin, pluginName);
 }
 
 process.on("SIGINT", () => {
