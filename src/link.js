@@ -6,7 +6,7 @@ const plugins = requireDir("./plugins")
 const pluginFolder = "./plugins";
 
 const start = () => {
-    logger.info("iot-link started");
+    logger.info("iot-link starting up");
     R.forEach((plugin) => run(plugin), pluginConfig.pluginsToLoad);
 }
 
