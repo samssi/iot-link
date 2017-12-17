@@ -1,9 +1,9 @@
-const logger = require("bunyan").createLogger({name: "iot-link-link"});
 const R = require("ramda");
 const pluginConfig = require("./plugin-config");
 const requireDir = require("require-dir");
 const plugins = requireDir("./plugins")
 const pluginFolder = "./plugins";
+const logger = require("./logging/bunyan-logger").logger;
 
 const start = () => {
     logger.info("iot-link starting up");
