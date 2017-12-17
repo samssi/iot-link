@@ -1,9 +1,7 @@
 const axios = require("axios");
+const sensorClient = axios.create({
+    baseURL: "http://172.18.0.20:5000/",
+    timeout: 5000
+});
 
-const sensorClient = () => {
-    return axios.create({
-        baseURL: "http://localhost:5000/",
-        timeout: 1000
-    });
-}
-
+module.exports = { sensorClient }

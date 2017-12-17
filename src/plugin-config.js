@@ -1,20 +1,17 @@
 const logger = require("./logging/bunyan-logger").logger;
 const fs = require("fs");
-const path = require("path");
 
-const pluginConfigFile = "plugin-load-config.json";
-const pluginConfigPath = `config/${pluginConfigFile}`;
+const pluginConfigPath = "/iot-link/config/plugin-load-config.json";
 
-const readFileFromRelativePath = (file) => {
-    const relativePath = path.relative(process.cwd(), file);
-    logger.info(`Reading possible plugin overrides from: ${relativePath}`)
+const readPluginConfig = () => {
+    logger.info(`Reading possible plugin configuration from: ${pluginConfigPath}`)
     try {
-        return fs.readFileSync(relativePath);
+        return fs.readFileSync(pluginConfigPath);
     }
     catch (err) {
-        logger.error(`Failure loading: ${pluginConfigFile}. Have you set up docker volume mapping to host config files?`)
+        logger.error(`Failure loading: "${pluginConfigPath}". Have you set up docker volume mapping to host config files?`)
         process.exit()
     }
 }
 
-exports.pluginsToLoad = JSON.parse(readFileFromRelativePath(pluginConfigPath));
+exports.pluginsToLoad = JSON.parse(readPluginConfig());

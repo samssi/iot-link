@@ -1,0 +1,1 @@
+docker run -d -v ~/.iot-link-config:/iot-link/config --net iot-nw --ip 172.18.0.10 iot/iot-link
