@@ -1,4 +1,4 @@
-const logger = require("bunyan").createLogger({name: "iot-link-config"});
+const logger = require("./logging/bunyan-logger").logger;
 const fs = require("fs");
 const path = require("path");
 

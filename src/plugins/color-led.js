@@ -1,4 +1,4 @@
-const logger = require("bunyan").createLogger({name: "iot-link-color-led"});
+const logger = require("../logging/bunyan-logger").logger;
 const sensorClient = require("../http/axios-client").sensorClient;
 
 exports.execute = () => {
